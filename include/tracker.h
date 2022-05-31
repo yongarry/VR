@@ -8,6 +8,8 @@
 #include <Eigen/Dense>
 #include "tocabi_msgs/matrix_3_4.h"
 #include <openvr.h>
+#include <fstream>
+#include <iostream>
 
 #ifndef hmdHandler_h
 #define hmdHandler_h
@@ -105,6 +107,10 @@ public:
 	_FLOAT RIGHTCONTROLLER;
 	_FLOAT HMD_TRACKER[trackerNum];
 	Mat HMD_worldEigInv;
+
+	std::ofstream writeFile;
+	double init_time_;
+	double cur_time_;
 
 
 /* vr component members */
