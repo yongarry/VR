@@ -64,7 +64,7 @@ private:
 	int argc;
 	char **argv;
     Ui::OverlayWidget *ui;
-	static const uint32_t trackerNum = 6;
+	static const uint32_t trackerNum = 4;
 
 
     QImage qt_image;

@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "std_msgs/Bool.h"
 #include "geometry_msgs/Pose.h"
+#include "geometry_msgs/PoseArray.h"
 #include <mutex>
 #include <thread>
 #include <vector>
@@ -67,12 +68,18 @@ public:
 	bool checkTrackers = true;
 	bool allTrackersFine = true;
 	std_msgs::Bool allTrackersFineData;
-	static const uint32_t trackerNum = 6;
+
+	static const uint32_t trackerNum = 4; // 6 for tracker mode/ 4 for master arm mode
+	bool master_arm_mode = true;	// if true only use 4 trackers.
+
 	char serialNumber[trackerNum][15];
 	bool pubPose = true;
 	int loop_tick_ = 0;
 	ros::Publisher hmd_pub, leftCon_pub, rightCon_pub, tracker_pub[trackerNum], tracker_status_pub;
 	ros::Publisher hmd_viz_pub, tracker_viz_pub[trackerNum];
+
+	ros::Publisher tracker_pose_pub;
+	geometry_msgs::PoseArray tracker_pose_msg;
 
 	geometry_msgs::Pose hmdVizMsg;
 	geometry_msgs::Pose trackerVizMsg[trackerNum];
